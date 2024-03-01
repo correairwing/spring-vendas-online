@@ -3,25 +3,33 @@
  */
 package br.com.icorrea.vendasonline.config;
 
-import javax.validation.Validator;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+
+import jakarta.validation.Validation;
+import jakarta.validation.ValidatorFactory;
 
 
 @Configuration
 public class ValidatorConfig {
-	
-//	@Autowired
-//    ResourceBundleMessageSource messageSource;
 
-	@Bean
-    public Validator validatorFactory () {
-		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-//	    bean.setValidationMessageSource(messageSource);
-	    return (Validator) bean;
+
+
+    @Bean
+    public ValidatorFactory validatorFactory() {
+        return Validation.buildDefaultValidatorFactory();
     }
+
+    @Bean
+    public LocalValidatorFactoryBean validatorFactoryBean() {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+//        bean.setValidationMessageSource(messageSource); // Se necessário
+        bean.setConstraintValidatorFactory(validatorFactory().getConstraintValidatorFactory());
+        return bean;
+    }
+
 }

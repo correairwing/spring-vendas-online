@@ -25,6 +25,6 @@ public class OpenAPIConfig {
 				          .description("Serviço para gerenciamento de clientes")
 				          .termsOfService("http://swagger.io/terms/")
 				          .license(new License().name("Apache 2.0").url("http://springdoc.org"))
-				          .contact(new Contact().name("Irwing Corrêa").email("irwing@teste.com")));
+				          .contact(new Contact().name("Rodrigo Pires").email("rodrigo@rodrigo.com")));
 	}
 }
